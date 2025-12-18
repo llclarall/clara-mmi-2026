@@ -27,9 +27,11 @@ public class ItemController : TriggerController
     private void PickItem()
     {
         //TODO: Replace this with the correct implementation
-        throw new NotImplementedException("PickItem method is yet not implemented.");
+        /* throw new NotImplementedException("PickItem method is yet not implemented."); */
 
         //TODO: Store the item into the InventorySystem instance
+        InventorySystem.Instance.StoreItem(m_Item);
+        
         //TODO: Disable interaction from Trigger
         //TODO: Deactivate item GameObject
     }
