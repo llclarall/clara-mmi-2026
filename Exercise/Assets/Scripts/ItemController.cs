@@ -32,7 +32,7 @@ public class ItemController : TriggerController
         //TODO: Store the item into the InventorySystem instance
         if (InventorySystem.Instance != null)
         {
-            InventorySystem.Instance.StoreItem(this);
+            InventorySystem.Instance.StoreItem(UniqueID);
             Debug.Log($"Objet {m_Item.name} ajouté à l'inventaire.");
         }
         else
@@ -41,7 +41,7 @@ public class ItemController : TriggerController
         }
 
         //TODO: Disable interaction from Trigger
-        CanInteract = false;
+        this.gameObject.SetActive(false);
 
         //TODO: Deactivate item GameObject
         if (m_Item == null)
