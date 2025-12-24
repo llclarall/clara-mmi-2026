@@ -30,9 +30,24 @@ public class ItemController : TriggerController
         /* throw new NotImplementedException("PickItem method is yet not implemented."); */
 
         //TODO: Store the item into the InventorySystem instance
-        InventorySystem.Instance.StoreItem(m_Item);
-        
+        if (InventorySystem.Instance != null)
+        {
+            InventorySystem.Instance.StoreItem(this);
+            Debug.Log($"Objet {m_Item.name} ajouté à l'inventaire.");
+        }
+        else
+        {
+            Debug.LogWarning("InventorySystem non trouvé dans la scène !");
+        }
+
         //TODO: Disable interaction from Trigger
+        CanInteract = false;
+
         //TODO: Deactivate item GameObject
+        if (m_Item == null)
+        {
+            return;
+        }
+        m_Item.SetActive(false);
     }
 }
