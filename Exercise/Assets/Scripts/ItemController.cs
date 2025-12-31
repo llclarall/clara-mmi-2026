@@ -7,6 +7,7 @@ public class ItemController : TriggerController
     private static readonly int INVALID_ID = 0;
 
     [SerializeField] private GameObject m_Item;
+    [SerializeField] private bool m_IsRevealer = false;
 
     public int UniqueID { get; private set; } = INVALID_ID;
 
@@ -26,28 +27,26 @@ public class ItemController : TriggerController
 
     private void PickItem()
     {
-        //TODO: Replace this with the correct implementation
-        /* throw new NotImplementedException("PickItem method is yet not implemented."); */
-
-        //TODO: Store the item into the InventorySystem instance
         if (InventorySystem.Instance != null)
         {
             InventorySystem.Instance.StoreItem(UniqueID);
-            Debug.Log($"Objet {m_Item.name} ajouté à l'inventaire.");
-        }
-        else
-        {
-            Debug.LogWarning("InventorySystem non trouvé dans la scène !");
         }
 
-        //TODO: Disable interaction from Trigger
+        if (m_Item != null)
+        {
+            if (m_IsRevealer) 
+            {
+                // niveau 4 : On active l'objet (le pont)
+                m_Item.SetActive(true);
+            }
+            else 
+            {
+                // niveau 1-3 : On désactive l'objet (la clé disparaît)
+                m_Item.SetActive(false);
+            }
+        }
+
+        // On désactive le trigger lui-même pour ne pas cliquer 2 fois
         this.gameObject.SetActive(false);
-
-        //TODO: Deactivate item GameObject
-        if (m_Item == null)
-        {
-            return;
-        }
-        m_Item.SetActive(false);
     }
 }
