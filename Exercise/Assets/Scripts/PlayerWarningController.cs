@@ -6,6 +6,7 @@ public class PlayerWarningController : MonoBehaviour
     [SerializeField] private CanvasGroup m_Container;
     [SerializeField] private TextMeshProUGUI m_Text;
 
+
     private void Awake()
     {
         m_Container.alpha = 0f;

@@ -30,6 +30,7 @@ public class ItemController : TriggerController
         if (InventorySystem.Instance != null)
         {
             InventorySystem.Instance.StoreItem(UniqueID);
+            UISystem.Instance.HidePlayerTip();
         }
 
         if (m_Item != null)
@@ -45,6 +46,7 @@ public class ItemController : TriggerController
                 m_Item.SetActive(false);
             }
         }
+
 
         // On désactive le trigger lui-même pour ne pas cliquer 2 fois
         this.gameObject.SetActive(false);
